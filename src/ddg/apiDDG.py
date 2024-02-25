@@ -40,8 +40,3 @@ class Duckduckgo:
         except Exception as e:
             return {"success": False, "statusCode": None, "message": f"Error parsing response: {e}"}
 
-
-if __name__ == '__main__':
-    ddg = Duckduckgo()
-    result = ddg.search('3SH118YJR_H063 stockx')
-    print(result)
