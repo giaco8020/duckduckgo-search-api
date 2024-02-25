@@ -5,13 +5,14 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="duckduckgo_search_api",
-    version="0.1.2",
+    version="0.1.3",
     author="giaco8020",
     description="A simple and lightweight Python wrapper for DuckDuckGo search.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/giaco8020/duckduckgo-search-api",
-    packages=setuptools.find_packages(),
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="src"),
     install_requires=[
         "requests>=2.24.0",
         "beautifulsoup4>=4.9.3",
