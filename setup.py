@@ -4,21 +4,21 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="duckduckgo-search-api",
-    version="0.1.1",
+    name="duckduckgo_search_api",
+    version="0.1.2",
     author="giaco8020",
-    description="Easy, Fast, Lightweight module for searching on https://duckduckgo.com",
+    description="A simple and lightweight Python wrapper for DuckDuckGo search.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/giaco8020/DuckDuckGo-Search-Api",
+    url="https://github.com/giaco8020/duckduckgo-search-api",
     packages=setuptools.find_packages(),
     install_requires=[
-        "requests >= 2.24.0",
-        "beautifulsoup4 >= 4.9.3",
+        "requests>=2.24.0",
+        "beautifulsoup4>=4.9.3",
     ],
     extras_require={
         "dev": [
-            "pytest >= 3.7",
+            "pytest>=3.7",
         ]
     },
     classifiers=[
