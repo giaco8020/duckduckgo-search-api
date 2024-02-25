@@ -7,7 +7,7 @@ DuckDuckGoSearchApi is a Python library that provides a simple and direct interf
 To install run the following:
 
 ```python
-pip install hhh
+pip install duckduckgo_search_api
 ```
 
 ## Available Methods
@@ -21,7 +21,7 @@ The `Duckduckgo` class offers the following main methods:
 Here's an example of how to use the DuckDuckGoSearchApi:
 
 ```python
-from DuckDuckGoSearchApi.apiDDG import Duckduckgo
+from ddg import Duckduckgo
 
 ddg_api = Duckduckgo()
 
