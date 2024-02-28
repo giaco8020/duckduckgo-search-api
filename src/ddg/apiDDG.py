@@ -1,20 +1,23 @@
 import requests
 from bs4 import BeautifulSoup
+import random
 
 
 class Duckduckgo:
 
     def __init__(self):
         self.endpoint = 'https://html.duckduckgo.com/html/'
-        self.headers = {
-            'Cache-Control': 'no-cache',
-            'Content-Length': '11',
-            'Origin': 'https://html.duckduckgo.com',
-            'Pragma': 'no-cache',
-            'Sec-Fetch-User': '?1',
-            'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-        }
+        self.user_agents = self.__load_user_agents("user-agents.txt")
+
+    def __load_user_agents(self, file_path):
+        with open(file_path, 'r') as file:
+            user_agents = [line.strip() for line in file if line.strip()]
+        return user_agents
+
+    def __get_random_user_agent(self):
+        if not self.user_agents:
+            raise ValueError("La lista degli User-Agent è vuota.")
+        return random.choice(self.user_agents)
 
     def __parse_response(self, response):
         soup = BeautifulSoup(response, 'html.parser')
@@ -29,10 +32,20 @@ class Duckduckgo:
         return {"success": True, "data": parsed_results}
 
     def search(self, query):
+        user_agent = self.__get_random_user_agent()
+        headers = {
+            'Cache-Control': 'no-cache',
+            'Content-Length': '11',
+            'Origin': 'https://html.duckduckgo.com',
+            'Pragma': 'no-cache',
+            'Sec-Fetch-User': '?1',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': user_agent,
+        }
         params = {'q': query, "b": ""}
         try:
-            response = requests.post(self.endpoint, data=params, headers=self.headers)
-            response.raise_for_status()  # This will raise an HTTPError if the status is 4xx, 5xx
+            response = requests.post(self.endpoint, data=params, headers=headers)
+            response.raise_for_status()
             return self.__parse_response(response.content)
         except requests.exceptions.RequestException as e:
             return {"success": False, "statusCode": e.response.status_code if e.response else None,
