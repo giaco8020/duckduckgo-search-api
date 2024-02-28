@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="duckduckgo_search_api",
-    version="0.1.3",
+    version="0.1.4",
     author="giaco8020",
     description="A simple and lightweight Python wrapper for DuckDuckGo search.",
     long_description=long_description,
